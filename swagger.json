@@ -1,0 +1,247 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the EIT management API.",
+    "version": "1.0.0",
+    "title": "EIT Management",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "52.248.91.248",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Eit",
+      "description": "Access EIT data.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/eit": {
+      "post": {
+        "tags": [
+          "Eit"
+        ],
+        "summary": "Add a new EIT",
+        "description": "",
+        "operationId": "addEit",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "EIT object that needs to be added.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EIT"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Eit"
+        ],
+        "summary": "Update an existing EIT",
+        "description": "",
+        "operationId": "updateEit",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Edit EIT object that needs to update EIT details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Edit-Eit"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "EIT not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Eit"
+        ],
+        "summary": "Deletes an EIT",
+        "description": "",
+        "operationId": "deleteEit",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "EIT object that needs to be added.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Delete-Eit"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Pet not found"
+          }
+        }
+      }
+    },
+    "/eits": {
+      "get": {
+        "tags": [
+          "Eit"
+        ],
+        "summary": "View all EITs",
+        "description": "View all",
+        "operationId": "findAll",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "petstore_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "flow": "implicit",
+      "scopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "EIT": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "surName": {
+          "type": "string"
+        },
+        "age": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "eit"
+      }
+    },
+    "Delete-Eit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+
+        }
+      },
+      "xml": {
+        "name": "Delete-Ei"
+      }
+    },
+    "Edit-Eit": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "surName": {
+          "type": "string"
+        },
+        "age": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Delete-Ei"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
